@@ -1,0 +1,112 @@
+---
+import Base from '../../layouts/Base.astro';
+import PurchaseOptions from '../../components/PurchaseOptions.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { APP_STORE_URL } from '../../consts';
+
+const title = 'Plans & Benefits — QPrive';
+const description =
+  'Sell Shopify products on a schedule with member pricing — percentage off, amount off or a fixed price — and attach discounts, free shipping, gifts and labels as perks.';
+---
+<Base title={title} description={description}>
+  <section class="phero phero-mint">
+    <div class="wrap herogrid">
+      <div>
+        <h1>Membership plans worth joining.</h1>
+        <p>Sell any product on a schedule with a member price, and attach the perks that make joining worth it. QPrive applies them for active members — and takes them off when they pause or cancel.</p>
+        <div class="hero-cta" style="margin-top:2rem">
+          <a href={APP_STORE_URL} class="btn btn-accent btn-lg">Try it free <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="fp-hero-viz"><PurchaseOptions /></div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="shead ctr rv" style="margin-bottom:2.5rem">
+        <h2>How it works</h2>
+      </div>
+      <div class="steps">
+        <div class="step rv"><div class="sn">01</div><h3>Create a benefit</h3><p>A discount, free shipping, a gift product or a member label — draft it, then publish when it’s ready.</p></div>
+        <div class="step rv"><div class="sn">02</div><h3>Build a plan</h3><p>Pick the products, the delivery options and the member price, and attach the benefits you want members to get.</p></div>
+        <div class="step rv"><div class="sn">03</div><h3>Go live</h3><p>The plan shows up as a purchase option on the product page, and its perks apply at checkout for active members.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURE DETAIL ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="split-list">
+        <div class="split rv">
+          <div>
+            <h2>Three ways to price, any schedule</h2>
+            <p class="lead">Give members a percentage off, an amount off, or a fixed member price. Offer several delivery options on one plan — every week, month or year, or every <i>N</i> of them — each with its own discount, so longer commitments can earn a better deal.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Plan · Refill Club · delivery options</span>
+              <div class="fp-row"><span>Every 1 month<small>Percentage off</small></span><span class="utag on">15% off</span></div>
+              <div class="fp-row"><span>Every 3 months<small>Percentage off</small></span><span class="utag on">20% off</span></div>
+              <div class="fp-row"><span>Every 1 year<small>Fixed price</small></span><span class="utag on">$299.00</span></div>
+              <div class="fp-sep"></div>
+              <div class="fp-chips"><span class="fp-chip on">Percentage off</span><span class="fp-chip">Amount off</span><span class="fp-chip">Fixed price</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split split-rev rv">
+          <div>
+            <h2>Four kinds of perk</h2>
+            <p class="lead">A discount on the whole order or on chosen products, with an optional minimum quantity or amount. Free shipping. A gift product, added in checkout. Or a label that marks someone as a member. Mix them on a plan however you like.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Benefits</span>
+              <div class="fp-row"><span>Member discount<small>10% off the whole order · min. $50</small></span><span class="utag">Discount</span></div>
+              <div class="fp-row"><span>Ships free<small>Any order</small></span><span class="utag">Free shipping</span></div>
+              <div class="fp-row"><span>Welcome candle<small>Added in checkout</small></span><span class="utag">Gift</span></div>
+              <div class="fp-row"><span>Insider<small>A member badge</small></span><span class="utag">Label</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split rv">
+          <div>
+            <h2>Draft, publish, archive</h2>
+            <p class="lead">Every benefit has a status, so you can build one before it goes live and retire it without deleting it. A plain-English summary updates as you edit, and you can attach a benefit to any number of plans straight from its own page.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Benefit · Sample member discount</span>
+              <div class="fp-chips"><span class="fp-chip">Draft</span><span class="fp-chip on">Published</span><span class="fp-chip">Archived</span></div>
+              <div class="fp-sep"></div>
+              <div class="fp-box"><b>Summary</b> — Sample member discount gives 10% off the whole order.</div>
+              <div class="fp-note"><i></i>Attached to <b>3 plans</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split split-rev rv">
+          <div>
+            <h2>Perks follow the member</h2>
+            <p class="lead">Members get their perks only while their subscription is active. Pause or cancel, and they come off. Change a plan’s discount or benefits, and QPrive re-syncs everyone already on it — nobody keeps last month’s deal.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Member status → perks</span>
+              <div class="fp-row"><span>Active</span><span class="utag on">Perks on</span></div>
+              <div class="fp-row"><span>Paused</span><span class="utag">Perks off</span></div>
+              <div class="fp-row"><span>Cancelled</span><span class="utag">Perks off</span></div>
+              <div class="fp-note"><i></i>Plan updated · <b>members re-synced</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lead="Build your first plan" em="in minutes." text="Start from the one-click sample plan and benefit, then make it yours." />
+</Base>

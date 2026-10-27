@@ -1,0 +1,71 @@
+---
+// Light QPrive app window: today's billing run on the Members screen. Rows
+// step Due → Charging → Paid (order created) as public/assets/app.js walks
+// #js-run; one card declines and goes onto the retry schedule instead, which
+// is the whole product in one loop: recurring billing + dunning. Each paid row adds to
+// "Collected"; the total due is the sum of the four amounts.
+//
+// Sidebar labels are the app's real nav — keep them that way. Names and
+// figures are illustrative, and the window says so.
+const tiles = [
+  { k: 'Members', v: '412', em: '+6 this week' },
+  { k: 'Collected', v: '$0', id: 'js-today', em: 'of $447 today' },
+  { k: 'Churn 30d', v: '2.4%', em: 'healthy' },
+];
+const rows = [
+  { name: 'Ava Martin',  plan: 'Refill Club · monthly',   amt: '$32.00',  order: '#1043' },
+  { name: 'Liam Chen',   plan: 'Refill Club · every 3 mo', amt: '$84.00',  order: '#1044' },
+  { name: 'Sofia Rossi', plan: 'Refill Club · monthly',   amt: '$32.00',  fail: true },
+  { name: 'Noah Patel',  plan: 'Insider · yearly',         amt: '$299.00', order: '#1045' },
+];
+---
+<div class="qstage">
+  <span class="qchip qc-1"><span class="qd"></span> Recurring billing</span>
+  <span class="qchip qc-2"><span class="qd"></span> Member perks</span>
+  <span class="qchip qc-3"><span class="qd"></span> Smart retries</span>
+  <span class="qchip qc-4"><span class="qd"></span> Self-service</span>
+
+  <div class="appshot" id="appshot" aria-label="QPrive app — today's billing run (illustrative)">
+    <div class="as-top">
+      <i></i><i></i><i></i>
+      <span class="u"><span class="umk"></span> QPrive · <b>Members</b></span>
+    </div>
+    <div class="as-body">
+      <aside class="as-side">
+        <div class="brand"><span class="mk"></span> QPrive</div>
+        <div class="as-nav on"><span class="d"></span> Members</div>
+        <div class="as-nav"><span class="d"></span> Benefits</div>
+        <div class="as-nav"><span class="d"></span> Plans</div>
+        <div class="as-nav"><span class="d"></span> Analytics &amp; Reports</div>
+        <div class="as-nav"><span class="d"></span> Settings</div>
+      </aside>
+      <div class="as-main">
+        <div class="as-h">
+          <div class="ttl">Billing run<small>today · 9:00 shop time</small></div>
+          <span class="as-live"><i></i> live</span>
+        </div>
+        <div class="as-tiles">
+          {tiles.map((t) => (
+            <div class="as-tile"><div class="k">{t.k}</div><div class="v"><span id={t.id}>{t.v}</span><em>{t.em}</em></div></div>
+          ))}
+        </div>
+        <div class="bill">
+          <div class="bill-h"><span>Member</span><span>Status</span></div>
+          <div id="js-run">
+            {rows.map((r) => (
+              <div class="brow" data-state="due" data-order={r.order} data-fail={r.fail ? '1' : undefined}>
+                <span class="b-av" aria-hidden="true">{r.name.split(' ').map((w) => w[0]).join('')}</span>
+                <span class="b-who"><b>{r.name}</b><small><b class="b-amt">{r.amt}</b> · {r.plan}</small></span>
+                <span class="b-st">
+                  <span class="pill">Due</span>
+                  <small class="b-note">&nbsp;</small>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="shot-cap">Illustrative dashboard · figures are examples</p>
+</div>

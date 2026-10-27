@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import { SUPPORT_EMAIL } from '../consts';
+
+const title = 'Privacy Policy — QPrive';
+const description = 'How QPrive collects, uses, retains, and protects merchant and customer data.';
+
+// Every statement below is checked against the app: access scopes in
+// Qmember/apps/shopify/shopify.app.toml, stored fields in
+// packages/db/prisma/schema.prisma, uninstall + GDPR handling in
+// packages/core/services/shopDataCleanup.ts. Change the app, change this page.
+---
+<Base title={title} description={description}>
+  <section class="phero">
+    <div class="wrap">
+      <div class="crumb"><a href="/">~</a> / privacy</div>
+      <h1>Privacy Policy</h1>
+      <p class="upd font-mono">Last updated: 27 October 2026</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="prose rv">
+        <p>This Privacy Policy explains how <strong>QPrive</strong> ("QPrive", "we", "us") collects, uses, retains, and protects information when a merchant installs our Shopify app, and when that merchant's customers subscribe to a membership plan. By installing QPrive, the merchant agrees to this policy.</p>
+
+        <h2>1. Who controls the data</h2>
+        <p>The merchant who installs QPrive is the <em>data controller</em> for their store's data, including their customers' data. QPrive acts as a <em>data processor</em>, handling that data on the merchant's behalf to provide the service. Store data remains owned by the merchant.</p>
+
+        <h2>2. Merchant &amp; store data we process</h2>
+        <p>To run membership plans and bill members, QPrive accesses, through the permissions granted at install:</p>
+        <ul>
+          <li><strong>Subscription contracts &amp; selling plans</strong> — the plans you create and the contracts your customers start, used to schedule and run billing.</li>
+          <li><strong>Products</strong> — titles, images and identifiers of the products you put on a plan or use as a gift benefit.</li>
+          <li><strong>Orders</strong> — used to confirm each billing cycle and show members' past orders.</li>
+          <li><strong>Discounts, validations &amp; metaobjects</strong> — QPrive creates the checkout discount that applies member perks, a cart validation, and a settings record for your storefront.</li>
+          <li><strong>Store &amp; account details</strong> — shop domain, the staff account that installed the app, and the access token needed to call the Shopify Admin API.</li>
+        </ul>
+
+        <h2>3. Customer data</h2>
+        <p>For each customer who subscribes, QPrive stores what it needs to manage their membership:</p>
+        <ul>
+          <li>Name, email address and phone number, as held in Shopify</li>
+          <li>Number of orders and total amount spent</li>
+          <li>Their subscription contracts — plan, status, amount, currency and billing frequency</li>
+          <li>The payment method on file as Shopify reports it — card brand, last digits, masked number and expiry. <strong>QPrive never receives or stores full card numbers</strong>; payments are processed by Shopify.</li>
+        </ul>
+        <p>QPrive also writes membership details (active benefits and discounts) to private fields on the customer record in your Shopify store, so perks can be applied at checkout and on the storefront.</p>
+        <p>QPrive's storefront embed reads the current customer and cart to show member notifications and benefits. It sets no tracking cookies and builds no advertising profile.</p>
+
+        <h2>4. How we use data</h2>
+        <ul>
+          <li>To bill members on schedule, create their orders, and retry failed payments under the merchant's rules</li>
+          <li>To apply member pricing and benefits at checkout and on the storefront</li>
+          <li>To let members manage their subscriptions from their Shopify customer account</li>
+          <li>To send subscription emails to members and operational alerts (such as inventory alerts) to the merchant</li>
+          <li>To show the merchant membership analytics</li>
+          <li>To operate, secure, debug, and improve the service, and to provide support you request</li>
+        </ul>
+
+        <h2>5. What we never do</h2>
+        <ul>
+          <li>We never sell or rent personal data.</li>
+          <li>We never share customer data with third parties for their own marketing.</li>
+          <li>We never store full payment card details.</li>
+        </ul>
+
+        <h2>6. Data retention</h2>
+        <p>Data is kept for the life of the installation. <strong>When a store uninstalls QPrive, its data is deleted</strong> — sessions first, then every store-scoped record. When Shopify sends its shop-redaction request after uninstall, any remaining record of the store is erased.</p>
+
+        <h2>7. Sub-processors &amp; infrastructure</h2>
+        <p>QPrive runs on <strong>Google Cloud</strong> (application hosting, database, scheduled jobs and task queues) and uses Shopify's APIs. Shopify webhooks reach us through <strong>Google Cloud Pub/Sub</strong>. Subscription emails to members are sent through <strong>Resend</strong>. Data is processed only to deliver the service described here.</p>
+
+        <h2>8. Your rights &amp; GDPR</h2>
+        <p>QPrive honors Shopify's mandatory data-protection webhooks:</p>
+        <ul>
+          <li><strong>Customer data request</strong> — we assemble the data we hold about a customer so the merchant can fulfil the request.</li>
+          <li><strong>Customer redaction</strong> — we delete the customer's member record and remove the payment-method details from any contract kept for the merchant's billing records.</li>
+          <li><strong>Shop redaction</strong> — we erase everything we hold for the store.</li>
+        </ul>
+        <p>To make a data request directly, email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</p>
+
+        <h2>9. Security</h2>
+        <p>All API and webhook traffic uses HTTPS, and webhook authenticity is verified before anything is processed. Scheduled jobs and internal service calls require an authenticated token.</p>
+
+        <h2>10. Changes to this policy</h2>
+        <p>We may update this policy as the product evolves. Material changes will be reflected by the "last updated" date above.</p>
+
+        <h2>11. Contact</h2>
+        <p>Questions about this policy or your data? Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

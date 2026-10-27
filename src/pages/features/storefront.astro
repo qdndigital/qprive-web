@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+import StorefrontMap from '../../components/StorefrontMap.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { APP_STORE_URL } from '../../consts';
+
+const title = 'Storefront & Checkout — QPrive';
+const description =
+  'Eight theme blocks, an app embed, a member gift in checkout and subscription management in the customer account — your membership everywhere shoppers buy.';
+---
+<Base title={title} description={description}>
+  <section class="phero phero-mint">
+    <div class="wrap herogrid">
+      <div>
+        <h1>Your membership, everywhere shoppers buy.</h1>
+        <p>Purchase options on the product page, tables that sell the plan, the plan in the cart, perks in checkout and self-service in the customer account — all added from the theme editor, no theme code.</p>
+        <div class="hero-cta" style="margin-top:2rem">
+          <a href={APP_STORE_URL} class="btn btn-accent btn-lg">Try it free <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="fp-hero-viz"><StorefrontMap /></div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="shead ctr rv" style="margin-bottom:2.5rem">
+        <h2>How it works</h2>
+      </div>
+      <div class="steps">
+        <div class="step rv"><div class="sn">01</div><h3>Turn on the embed</h3><p>In the theme editor, open App embeds, switch QPrive on and save. Member notifications and the benefits popup go live.</p></div>
+        <div class="step rv"><div class="sn">02</div><h3>Add the blocks</h3><p>Drop purchase options, pricing or compare tables, benefits and more into any template — each block has its own settings.</p></div>
+        <div class="step rv"><div class="sn">03</div><h3>Members check out</h3><p>Their discount and free shipping apply automatically, and a gift benefit shows up as a block in checkout.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURE DETAIL ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="split-list">
+        <div class="split rv">
+          <div>
+            <h2>Subscribe right on the product page</h2>
+            <p class="lead">The purchase-options block sits under the add-to-cart button: one-time purchase or subscribe, every delivery option, and the member price for each — so the decision happens where the shopper is already deciding.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Product page · Purchase options</span>
+              <div class="fp-row"><span>One-time purchase</span><span>$40.00</span></div>
+              <div class="fp-row"><span>Subscribe &amp; save 15%<small>Delivery every 1 month</small></span><span class="utag on">$34.00</span></div>
+              <div class="fp-row"><span>Subscribe &amp; save 20%<small>Delivery every 3 months</small></span><span class="utag on">$32.00</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split split-rev rv">
+          <div>
+            <h2>Tables that sell the plan</h2>
+            <p class="lead">A pricing table lays your plans side by side. A compare table goes feature by feature, so shoppers can pick the tier that fits. Benefits, How it works and Membership info blocks explain what joining means before anyone commits.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Any page · Compare table</span>
+              <table class="fp-table">
+                <thead><tr><th>Perk</th><th>Monthly</th><th class="hi">Yearly</th></tr></thead>
+                <tbody>
+                  <tr><td>Member discount</td><td class="y">10%</td><td class="y hi">15%</td></tr>
+                  <tr><td>Free shipping</td><td class="y">✓</td><td class="y hi">✓</td></tr>
+                  <tr><td>Welcome gift</td><td class="n">—</td><td class="y hi">✓</td></tr>
+                  <tr><td>Insider label</td><td class="n">—</td><td class="y hi">✓</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="split rv">
+          <div>
+            <h2>The plan, still visible in the cart</h2>
+            <p class="lead">The cart plan details block shows each subscribed item with its plan name, delivery schedule and price per delivery — so nobody reaches checkout unsure what they signed up for.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Cart · Plan details</span>
+              <div class="fp-row"><span>Signature Candle<small>Refill Club · every 1 month</small></span><span>$34.00</span></div>
+              <div class="fp-row"><span>Room Mist<small>Refill Club · every 3 months</small></span><span>$22.00</span></div>
+              <div class="fp-note"><i></i>Price shown <b>per delivery</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split split-rev rv">
+          <div>
+            <h2>Checkout and the customer account</h2>
+            <p class="lead">Member discounts and free shipping are applied at checkout by a Shopify discount QPrive installs for you — no codes to share. A gift benefit appears as a checkout block. After the order, members manage their subscription from their Shopify customer account.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Customer account · Refill Club</span>
+              <div class="fp-row"><span>Next order<small>Nov 12 · est. $34.00</small></span><span class="mb-st">Active</span></div>
+              <div class="fp-sep"></div>
+              <div class="fp-chips"><span class="fp-chip">Pause</span><span class="fp-chip">Skip next order</span><span class="fp-chip">Edit address</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lead="Put your membership" em="in front of every shopper." text="Install free, switch on the app embed, and add your first block." />
+</Base>

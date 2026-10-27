@@ -1,0 +1,19 @@
+---
+// Where QPrive shows up for shoppers — the real theme-block and extension
+// names from Qmember/apps/shopify/extensions.
+const SURFACES = [
+  ['Product page', 'Purchase options'],
+  ['Any page', 'Pricing table · Compare table'],
+  ['Any page', 'Benefits · How it works · Membership info'],
+  ['Cart', 'Cart plan details'],
+  ['Checkout', 'Member gift'],
+  ['Customer account', 'Subscription management'],
+];
+---
+<div class="offer-card sf-list" aria-label="Where QPrive shows up for shoppers">
+  <span class="offer-ck">Where shoppers meet it</span>
+  {SURFACES.map(([where, what]) => (
+    <div class="sf-row"><span class="sf-where">{where}</span><span class="sf-what">{what}</span></div>
+  ))}
+  <div class="sf-embed"><span class="dn-k">App embed</span><span>Member notifications · Benefits popup</span></div>
+</div>

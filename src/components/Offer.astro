@@ -1,0 +1,111 @@
+---
+// "What you get" — the four jobs QPrive does, each with a short case and a
+// picture. Same pattern as the shared Offer block: tabs default to the first,
+// all panels render in markup (SSR) so a no-JS visitor still gets the first
+// one complete; public/assets/app.js only toggles which is shown.
+//
+// Each tab links to its own /features/* page.
+//
+// Every row is something the app does today — see Qmember/docs/USER_GUIDE.md
+// and the extensions in Qmember/apps/shopify/extensions. Pictures are
+// illustrative.
+import PurchaseOptions from './PurchaseOptions.astro';
+import RetryTimeline from './RetryTimeline.astro';
+import StorefrontMap from './StorefrontMap.astro';
+import MemberCard from './MemberCard.astro';
+
+interface Row { title: string; desc: string; }
+interface Tab { key: string; label: string; href: string; sub: string; rows: Row[]; }
+
+const TABS: Tab[] = [
+  {
+    key: 'plans',
+    label: 'Plans & perks',
+    href: '/features/plans-benefits',
+    sub: 'A plan is a product on a schedule with a member price. Benefits are the perks you hang on it.',
+    rows: [
+      { title: 'Three ways to price', desc: 'Percentage off, amount off, or a fixed member price — with several delivery options per plan, like monthly and every 3 months at a bigger discount.' },
+      { title: 'Four kinds of perk', desc: 'A discount on the whole order or chosen products (with an optional minimum), free shipping, a gift product, or a member label.' },
+      { title: 'Perks follow the member', desc: 'Active members get them at checkout; pause or cancel and they come off. Change a plan and everyone on it is re-synced.' },
+    ],
+  },
+  {
+    key: 'billing',
+    label: 'Billing & retries',
+    href: '/features/recurring-billing',
+    sub: 'Every cycle billed on schedule, and a declined card gets a second chance on your rules.',
+    rows: [
+      { title: 'Billing runs itself', desc: 'On your shop’s billing schedule QPrive charges every member who is due, and each successful charge becomes a regular Shopify order.' },
+      { title: 'Retries you set', desc: '0 to 10 attempts, 1 to 14 days apart — then skip, pause or cancel the subscription, with a notification each time.' },
+      { title: 'Out-of-stock handled apart', desc: 'Its own retries and final action, and an email to you to restock — so a missing product never looks like a missing payment.' },
+    ],
+  },
+  {
+    key: 'storefront',
+    label: 'Storefront',
+    href: '/features/storefront',
+    sub: 'Shoppers meet the membership everywhere they buy — added from the theme editor, no theme code.',
+    rows: [
+      { title: 'Eight theme blocks', desc: 'Purchase options on the product page, pricing and compare tables, benefits, how it works, membership info and cart plan details.' },
+      { title: 'An app embed', desc: 'Member notifications and the benefits popup, placed above or below the anchor you choose.' },
+      { title: 'Checkout and customer account', desc: 'A member-gift block in checkout, and subscription management in the Shopify customer account.' },
+    ],
+  },
+  {
+    key: 'members',
+    label: 'Members',
+    href: '/features/members',
+    sub: 'Everything after the sign-up, on one screen — and the numbers that tell you it’s working.',
+    rows: [
+      { title: 'Manage any member', desc: 'Their plan, contracts, past and upcoming orders, orders count and total spent. Pause, resume, cancel or skip a cycle in a click.' },
+      { title: 'Members serve themselves', desc: 'Pause, resume, skip the next order and change the delivery address from their Shopify account — no email to you.' },
+      { title: 'Analytics & reports', desc: 'Active members, recurring revenue, lifetime revenue and churn, plus status counts, top plans and member growth over 7 to 60 days.' },
+    ],
+  },
+];
+
+---
+<section class="sec offersec" id="features">
+  <div class="wrap">
+    <div class="shead ctr shead-lg rv" style="margin-bottom:2.25rem">
+      <h2>From sign-up to every renewal, <em>handled in one app.</em></h2>
+    </div>
+
+    <div class="offer rv">
+      <div class="offer-tabs" id="offer-tabs" role="tablist" aria-label="What QPrive does">
+        {TABS.map((t, i) => (
+          <button data-tab={t.key} role="tab" aria-selected={i === 0}>{t.label}</button>
+        ))}
+      </div>
+
+      {TABS.map((t, i) => (
+        <div class="offer-panel" data-panel={t.key} hidden={i !== 0}>
+          <div class="offer-grid">
+            <div class="offer-copy">
+              <p class="offer-sub">{t.sub}</p>
+              <div class="offer-list">
+                {t.rows.map((r) => (
+                  <div class="offer-row">
+                    <span class="offer-arrow">&rarr;</span>
+                    <div>
+                      <b>{r.title}</b>
+                      <p>{r.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <a href={t.href} class="btn btn-line offer-more">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+
+            <div class="offer-viz">
+              {t.key === 'plans' && <PurchaseOptions />}
+              {t.key === 'billing' && <RetryTimeline />}
+              {t.key === 'storefront' && <StorefrontMap />}
+              {t.key === 'members' && <MemberCard />}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

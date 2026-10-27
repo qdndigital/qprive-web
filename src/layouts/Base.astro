@@ -1,0 +1,108 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyCta from '../components/StickyCta.astro';
+import { SITE_URL, SUPPORT_EMAIL } from '../consts';
+import { PLANS } from '../plans';
+import '../styles/global.css';
+
+const { title, description, noindex = false, faq = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// FAQPage acceptedAnswer.text must be plain prose; the answers are HTML.
+const plain = (html: string) =>
+  html.replace(/<[^>]+>/g, '').replace(/&mdash;/g, '—').replace(/&rarr;/g, '→')
+      .replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+
+// No og:image yet, so the Twitter card is `summary`. Add public/assets/og.png
+// (1200×630), wire og:image here and switch to summary_large_image.
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#org`,
+      name: 'QPrive',
+      url: `${SITE_URL}/`,
+      email: SUPPORT_EMAIL,
+      description:
+        'QPrive is a Shopify membership and subscription app: recurring plans with member pricing, automatic perks, automatic billing with failed-payment retries, and member self-service.',
+      logo: `${SITE_URL}/favicon.svg`,
+      areaServed: 'Worldwide',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/#app`,
+      name: 'QPrive — Memberships & Subscriptions',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Shopify',
+      description:
+        'Memberships and subscriptions for Shopify: sell products weekly, monthly or yearly with member pricing; attach discounts, free shipping, gifts and labels; bill every cycle automatically with retries; let members pause, skip and resume from their account.',
+      // Read from src/plans.ts so a price change can't miss this block.
+      offers: PLANS.map((p) => ({
+        '@type': 'Offer',
+        name: p.name,
+        price: p.price.replace('$', ''),
+        priceCurrency: 'USD',
+      })),
+      publisher: { '@id': `${SITE_URL}/#org` },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: 'QPrive',
+      publisher: { '@id': `${SITE_URL}/#org` },
+    },
+    ...(faq.length
+      ? [
+          {
+            '@type': 'FAQPage',
+            '@id': canonical + '#faq',
+            mainEntity: faq.map((f: { q: string; a: string }) => ({
+              '@type': 'Question',
+              name: f.q,
+              acceptedAnswer: { '@type': 'Answer', text: plain(f.a) },
+            })),
+          },
+        ]
+      : []),
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {/* Self-hosted fonts (see src/styles/fonts.css). Be Vietnam Pro is
+        static, one file per weight: preload the two above the fold — body
+        (400) and headlines (700). */}
+    <link rel="preload" href="/fonts/bevietnam-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bevietnam-700.woff2" as="font" type="font/woff2" crossorigin />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#F4F1EA" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="QPrive" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
+  </head>
+  <body>
+    <Header />
+    <main><slot /></main>
+    <Footer />
+    <StickyCta />
+    <script src="/assets/app.js" is:inline defer></script>
+  </body>
+</html>

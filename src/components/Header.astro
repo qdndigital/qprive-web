@@ -1,0 +1,37 @@
+---
+import { NAV, FEATURES_NAV, APP_STORE_URL } from '../consts';
+import Logo from './Logo.astro';
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const onFeatures = path.startsWith('/features/');
+---
+<header class="site">
+  <div class="wrap nav">
+    <Logo />
+    <nav class="nav-links" id="nav-links">
+      <div class="nav-menu">
+        <button type="button" class="nav-menu-btn" aria-haspopup="true" aria-expanded="false">
+          <span class={onFeatures ? 'active' : ''}>Features</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          {FEATURES_NAV.map(([href, label]) => <a href={href} class={path === href ? 'active' : ''}>{label}</a>)}
+        </div>
+      </div>
+      {NAV.map(([href, label]) => <a href={href} class={path === href ? 'active' : ''}>{label}</a>)}
+      {/* Mobile menu only: the action, full width at the foot of the panel.
+          On desktop it lives in .nav-cta beside the menu instead. */}
+      <div class="nav-mcta">
+        <a href={APP_STORE_URL} class="btn btn-accent btn-lg">Install free</a>
+      </div>
+    </nav>
+    {/* Install is the only action: QPrive is self-serve and free. */}
+    <div class="nav-cta">
+      <a href={APP_STORE_URL} class="btn btn-accent">Install free</a>
+      <button class="menu-btn" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
+        <svg class="ic-open" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ic-close" viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-overlay"></div>

@@ -1,0 +1,112 @@
+---
+import Base from '../../layouts/Base.astro';
+import RetryTimeline from '../../components/RetryTimeline.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { APP_STORE_URL } from '../../consts';
+
+const title = 'Recurring Billing & Retries — QPrive';
+const description =
+  'QPrive bills every member on schedule and turns each charge into a Shopify order. Failed payments retry up to 10 times, then skip, pause or cancel — your call.';
+---
+<Base title={title} description={description}>
+  <section class="phero phero-mint">
+    <div class="wrap herogrid">
+      <div>
+        <h1>Billing that runs itself.</h1>
+        <p>Every member charged on their date, every charge a Shopify order — and when a card declines, a retry schedule you set instead of an email you have to write.</p>
+        <div class="hero-cta" style="margin-top:2rem">
+          <a href={APP_STORE_URL} class="btn btn-accent btn-lg">Try it free <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="fp-hero-viz"><RetryTimeline /></div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="shead ctr rv" style="margin-bottom:2.5rem">
+        <h2>How it works</h2>
+      </div>
+      <div class="steps">
+        <div class="step rv"><div class="sn">01</div><h3>Set your rules</h3><p>Under Settings → Billing attempts, choose how many times to retry, how far apart, and what happens after.</p></div>
+        <div class="step rv"><div class="sn">02</div><h3>QPrive bills</h3><p>On your shop’s billing schedule it finds every member who is due and charges them for the cycle.</p></div>
+        <div class="step rv"><div class="sn">03</div><h3>Failures follow the rules</h3><p>A declined card retries on your schedule; if every retry fails, the subscription is skipped, paused or cancelled.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURE DETAIL ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="split-list">
+        <div class="split rv">
+          <div>
+            <h2>Every cycle, on schedule</h2>
+            <p class="lead">You never trigger a charge by hand. On your billing schedule QPrive charges each member who is due, and every successful charge becomes a regular Shopify order — fulfilled, reported and refunded like any other.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Today’s billing run · example</span>
+              <div class="fp-row"><span>Ava Martin<small>Refill Club · monthly</small></span><span class="utag on">Order #1043</span></div>
+              <div class="fp-row"><span>Liam Chen<small>Refill Club · every 3 months</small></span><span class="utag on">Order #1044</span></div>
+              <div class="fp-row"><span>Noah Patel<small>Insider · yearly</small></span><span class="utag on">Order #1045</span></div>
+              <div class="fp-note"><i></i>Next run · <b>tomorrow, 9:00</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split split-rev rv">
+          <div>
+            <h2>Retry rules you control</h2>
+            <p class="lead">Set 0 to 10 retry attempts, 1 to 14 days apart. When the last one fails, choose the outcome: skip the cycle, pause the subscription, or cancel it — each with a notification. If cancelling is too harsh for your program, pick skip or pause instead.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Settings · Payment method failure</span>
+              <div class="fp-row"><span>Number of retry attempts<small>0 – 10</small></span><span class="utag on">3</span></div>
+              <div class="fp-row"><span>Days between attempts<small>1 – 14</small></span><span class="utag on">3 days</span></div>
+              <div class="fp-sep"></div>
+              <span class="fp-label" style="margin-bottom:10px">When all retries fail</span>
+              <div class="fp-chips"><span class="fp-chip on">Skip + notify</span><span class="fp-chip">Pause + notify</span><span class="fp-chip">Cancel + notify</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split rv">
+          <div>
+            <h2>Out of stock isn’t a failed card</h2>
+            <p class="lead">When a cycle can’t be filled because a product ran out, QPrive runs its own retry rules — attempts, days between and a final action — and emails you an inventory alert so you can restock before the next try.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Settings · Not enough inventory</span>
+              <div class="fp-row"><span>Number of retry attempts</span><span class="utag on">2</span></div>
+              <div class="fp-row"><span>Days between attempts</span><span class="utag on">2 days</span></div>
+              <div class="fp-row"><span>When all retries fail</span><span class="utag">Pause + notify</span></div>
+              <div class="fp-sep"></div>
+              <div class="fp-box"><b>Inventory alert</b> — Signature Candle is out of stock for 4 upcoming orders.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split split-rev rv">
+          <div>
+            <h2>Always know what happened</h2>
+            <p class="lead">Each member’s page lists their past cycles. A successful one links straight to its Shopify order; a failed one says “Order not created”, so you can see at a glance which charge didn’t go through and why.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Ava Martin · Past orders</span>
+              <div class="fp-row"><span>Oct 12<small>$32.00</small></span><span class="utag on">View order</span></div>
+              <div class="fp-row"><span>Sep 12<small>$32.00</small></span><span class="fp-chip bad">Order not created</span></div>
+              <div class="fp-row"><span>Aug 12<small>$32.00</small></span><span class="utag on">View order</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lead="Stop chasing payments." em="Let the rules do it." text="Install free, set your retry rules once, and let every cycle bill itself." />
+</Base>

@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import MembersShot from '../components/MembersShot.astro';
+import Offer from '../components/Offer.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { APP_STORE_URL } from '../consts';
+import { PLANS } from '../plans';
+
+const title = 'QPrive — Memberships & Subscriptions for Shopify';
+const description =
+  'Sell Shopify products on subscription with member pricing and perks. QPrive bills every cycle, retries failed payments, and lets members manage themselves.';
+
+const mk = '<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>';
+
+// The situations a merchant is in before they go looking for a membership
+// app. Each answer is a shipped capability — see Qmember/docs/USER_GUIDE.md.
+const pains = [
+  {
+    ic: '<path d="M4 7h16v10H4z"/><path d="M8 11h4"/>',
+    h: 'Discount codes bring them back once',
+    p: 'A code in an email gets used, then forgotten — or shared with everyone. QPrive gives members their price and perks at checkout every cycle, and only while they’re active.',
+  },
+  {
+    ic: '<path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>',
+    h: 'Repeat orders depend on you remembering',
+    p: 'Creating the same order for the same customer every month doesn’t scale. QPrive bills each member on their date and turns every charge into a Shopify order.',
+  },
+  {
+    ic: '<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/>',
+    h: 'A declined card means chasing the customer',
+    p: 'Instead of emailing about a failed payment, set how many times to retry and how far apart — then skip, pause or cancel, with a notification each time.',
+  },
+  {
+    ic: '<path d="M4 6h16v10H8l-4 4z"/>',
+    h: '“Can I skip this month?” fills your inbox',
+    p: 'Members pause, resume, skip the next order and change their address from their own Shopify account. You find out from the dashboard, not your inbox.',
+  },
+  {
+    ic: '<path d="M12 3l2.2 5.6L20 9.3l-4.5 3.8L17 19l-5-3.1L7 19l1.5-5.9L4 9.3l5.8-.7z"/>',
+    h: 'Perks drift out of date',
+    p: 'Change what a plan includes and half your members still have last month’s deal. QPrive re-syncs everyone on a plan the moment you change its discount or benefits.',
+  },
+  {
+    ic: '<path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/>',
+    h: 'No idea if the program is growing',
+    p: 'Active members, recurring revenue, lifetime revenue and churn on one page, with member growth over 7 to 60 days — so you can tell retention from wishful thinking.',
+  },
+];
+---
+<Base title={title} description={description}>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap herogrid">
+      <div class="hero-copy">
+        <h1>Turn One-Time Shoppers Into Members Who Keep Coming Back.</h1>
+        <p class="lead">
+          Subscriptions with member pricing and perks, billed automatically every cycle — with retries on your
+          rules when a card fails. No code, no codes to hand out.
+        </p>
+        <div class="hero-cta">
+          <a href={APP_STORE_URL} class="btn btn-accent btn-lg">Install free <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#features" class="btn btn-line btn-lg">See what you get</a>
+        </div>
+      </div>
+      <div class="hero-viz"><MembersShot /></div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT YOU GET ===================== -->
+  <Offer />
+
+  <!-- ===================== RIGHT PLACE ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="shead ctr shead-lg rv" style="margin-bottom:2.5rem">
+        <h2>If you've said any of these, you're in the right place.</h2>
+        <p class="lead-c">Nobody sets out to run a membership program by hand. It just turns into that — one code, one reminder, one refund email at a time.</p>
+      </div>
+      <div class="bento rv">
+        {pains.map((c) => (
+          <div class="b">
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true" set:html={c.ic} /></span>
+            <h3>{c.h}</h3>
+            <p>{c.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRICING ===================== -->
+  <section class="sec alt" id="pricing">
+    <div class="wrap">
+      <div class="shead ctr shead-lg rv" style="margin-bottom:2.5rem">
+        <h2>Free. <em>Every feature.</em></h2>
+        <p class="lead-c">QPrive is free while we launch on the Shopify App Store — no card, no trial clock, nothing held back.</p>
+      </div>
+      <div class={PLANS.length === 1 ? 'plans one rv' : 'plans rv'}>
+        {PLANS.map((p) => (
+          <div class={p.feat ? 'plan feat' : 'plan'}>
+            {p.badge && <span class="badge">{p.badge}</span>}
+            <span class="ptag">{p.name}</span>
+            <div class="price"><b>{p.price}</b><span>/ month</span></div>
+            <p class="pdesc">{p.desc}</p>
+            <ul>
+              {p.features.map((f) => <li><span set:html={mk} /> {f}</li>)}
+            </ul>
+            <a href={APP_STORE_URL} class={p.feat ? 'btn btn-accent w-full' : 'btn btn-line w-full'}>Install free</a>
+          </div>
+        ))}
+      </div>
+
+      <p class="snote" style="margin-top:1.75rem">
+        <a href="/pricing">See everything that’s included →</a>
+      </p>
+
+      <!-- Setup in four steps — the onboarding wizard's own checklist. -->
+      <div class="setup3 setup4 rv" id="setup" aria-label="Setup in four steps">
+        <div><span class="s3n">01</span><b>Install</b><span>Add QPrive from the App Store. Webhooks, the checkout discount and customer fields are set up for you.</span></div>
+        <div><span class="s3n">02</span><b>Set billing rules</b><span>Choose how many times to retry a failed payment, and what happens after.</span></div>
+        <div><span class="s3n">03</span><b>Create a plan</b><span>Pick products, a schedule and a member price — or start from the one-click sample.</span></div>
+        <div><span class="s3n">04</span><b>Turn on the embed</b><span>Flip QPrive on under App embeds in the theme editor. Save.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

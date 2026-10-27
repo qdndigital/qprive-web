@@ -1,0 +1,114 @@
+---
+import Base from '../../layouts/Base.astro';
+import MemberCard from '../../components/MemberCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { APP_STORE_URL } from '../../consts';
+
+const title = 'Members & Analytics — QPrive';
+const description =
+  'Every member, contract and cycle on one screen. Pause, resume, cancel or skip in a click, let members serve themselves, and track members, recurring revenue and churn.';
+---
+<Base title={title} description={description}>
+  <section class="phero phero-mint">
+    <div class="wrap herogrid">
+      <div>
+        <h1>Every member, every cycle, one screen.</h1>
+        <p>Find any member, see their contracts and orders, and act in a click — while members handle the everyday changes themselves, and the numbers tell you whether the program is growing.</p>
+        <div class="hero-cta" style="margin-top:2rem">
+          <a href={APP_STORE_URL} class="btn btn-accent btn-lg">Try it free <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="fp-hero-viz"><MemberCard /></div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="shead ctr rv" style="margin-bottom:2.5rem">
+        <h2>How it works</h2>
+      </div>
+      <div class="steps">
+        <div class="step rv"><div class="sn">01</div><h3>Find the member</h3><p>Search by name or email. The list shows each member’s orders, total spent, status and plan.</p></div>
+        <div class="step rv"><div class="sn">02</div><h3>Open the contract</h3><p>See the plan, amount, billing frequency, benefits, past orders and the cycles coming up.</p></div>
+        <div class="step rv"><div class="sn">03</div><h3>Act in a click</h3><p>Pause, resume or cancel the contract, or skip a single upcoming cycle — perks update with it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURE DETAIL ===================== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="split-list">
+        <div class="split rv">
+          <div>
+            <h2>All your members, sorted</h2>
+            <p class="lead">One searchable list of everyone who has subscribed: name, email, orders, amount spent, an Active or Inactive status and their plan — with a link to the member page and one to the customer in your Shopify admin.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Members · example</span>
+              <div class="fp-row"><span>Ava Martin<small>12 orders · $384.00</small></span><span class="mb-st">Active</span></div>
+              <div class="fp-row"><span>Liam Chen<small>4 orders · $336.00</small></span><span class="mb-st">Active</span></div>
+              <div class="fp-row"><span>Mia Lopez<small>2 orders · $64.00</small></span><span class="utag">Inactive</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split split-rev rv">
+          <div>
+            <h2>Pause, resume, cancel, skip</h2>
+            <p class="lead">Pausing takes a member’s discounts and benefits off the storefront; resuming puts them back. Cancelling is permanent and asks you to confirm. Skipping moves just one upcoming order to the next cycle.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Contract · Refill Club · every 1 month</span>
+              <div class="fp-row"><span>Nov 12<small>Upcoming</small></span><span class="mb-btn">Skip</span></div>
+              <div class="fp-row"><span>Dec 12<small>Upcoming</small></span><span class="mb-btn">Skip</span></div>
+              <div class="fp-sep"></div>
+              <div class="fp-chips"><span class="fp-chip">Pause</span><span class="fp-chip">Resume</span><span class="fp-chip bad">Cancel</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split rv">
+          <div>
+            <h2>Members serve themselves</h2>
+            <p class="lead">From their Shopify customer account, members see every subscription, pause or resume it, skip the next order, change the delivery address and check the price summary and past orders — without emailing you.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Customer account · My subscriptions</span>
+              <div class="fp-row"><span>Refill Club<small>Next order Nov 12</small></span><span class="mb-btn">Manage</span></div>
+              <div class="fp-row"><span>Insider<small>Renews Mar 3</small></span><span class="mb-btn">Manage</span></div>
+              <div class="fp-sep"></div>
+              <div class="fp-chips"><span class="fp-chip">Pause</span><span class="fp-chip">Skip next order</span><span class="fp-chip">Edit address</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split split-rev rv">
+          <div>
+            <h2>Know if the program is growing</h2>
+            <p class="lead">Analytics &amp; Reports shows active members, recurring revenue per cycle, lifetime revenue and churn — plus counts by status, your top plans, and new versus lost members over 7, 15, 30 or 60 days.</p>
+          </div>
+          <div class="fp-viz">
+            <div class="fp-panel">
+              <span class="fp-label">Analytics &amp; Reports · illustrative</span>
+              <div class="fp-stats">
+                <div class="fp-stat"><span class="k">Active members</span><b>412</b><em>3 plans</em></div>
+                <div class="fp-stat"><span class="k">Recurring revenue</span><b>$14,860</b><em>per cycle</em></div>
+                <div class="fp-stat"><span class="k">Lifetime revenue</span><b>$96,240</b><em>all time</em></div>
+                <div class="fp-stat"><span class="k">Churn</span><b>2.4%</b><em>healthy</em></div>
+              </div>
+              <div class="fp-sep"></div>
+              <div class="fp-chips"><span class="fp-chip">7d</span><span class="fp-chip">15d</span><span class="fp-chip on">30d</span><span class="fp-chip">60d</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lead="Run the program," em="not the paperwork." text="Install free and let members handle the everyday changes themselves." />
+</Base>

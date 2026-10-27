@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { SUPPORT_EMAIL } from '../consts';
+
+const title = 'Terms of Service — QPrive';
+const description = 'The terms governing use of the QPrive Shopify app.';
+---
+<Base title={title} description={description}>
+  <section class="phero">
+    <div class="wrap">
+      <div class="crumb"><a href="/">~</a> / terms</div>
+      <h1>Terms of Service</h1>
+      <p class="upd font-mono">Last updated: 27 October 2026</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="prose rv">
+        <p>These Terms of Service ("Terms") govern your use of the <strong>QPrive</strong> application ("QPrive", "the app", "we", "us") for Shopify. By installing or using the app, you ("the merchant", "you") agree to these Terms.</p>
+
+        <h2>1. The service</h2>
+        <p>QPrive lets you sell products on subscription with member pricing, attach benefits to membership plans, bill members automatically on the schedule you set, retry failed payments under rules you choose, and manage members — along with the related features described on this website and in the app.</p>
+
+        <h2>2. Eligibility &amp; account</h2>
+        <p>You must have an active Shopify store, the authority to install apps on it, and a store able to sell subscriptions through Shopify. You are responsible for the permissions you grant at install and for activity within your store.</p>
+
+        <h2>3. Pricing &amp; billing</h2>
+        <ul>
+          <li>QPrive is currently offered <strong>free of charge</strong>. No payment method is required and no charge is made for using the app.</li>
+          <li>If paid plans are introduced, they will be billed through the <strong>Shopify Billing API</strong>, announced in advance, and only charged after you approve them in Shopify.</li>
+          <li>Payments from your members are processed by Shopify through your store's checkout. QPrive does not process or hold those funds.</li>
+        </ul>
+
+        <h2>4. Your responsibilities</h2>
+        <ul>
+          <li>You decide the plans, prices, benefits and billing-attempt rules in your store, and you are responsible for them — including how and when members are charged, retried, skipped, paused or cancelled.</li>
+          <li>You are responsible for your own customer-facing terms for subscriptions (including cancellation and refund terms) and for complying with the laws that apply to recurring billing where you sell.</li>
+        </ul>
+
+        <h2>5. Acceptable use</h2>
+        <p>You agree not to misuse the service, including: attempting to disrupt or reverse-engineer it, using it to violate Shopify's terms or applicable law, or using it to harm your customers.</p>
+
+        <h2>6. Data</h2>
+        <p>Your use of the app is also governed by our <a href="/privacy">Privacy Policy</a>, which explains what data we process and how. You are responsible for maintaining your own customer-facing privacy disclosures as required by law.</p>
+
+        <h2>7. Availability &amp; changes</h2>
+        <p>We aim for high availability but do not guarantee uninterrupted service. We may add, change, or remove features over time. Material changes to these Terms will be reflected by the "last updated" date above.</p>
+
+        <h2>8. Disclaimer &amp; limitation of liability</h2>
+        <p>The service is provided "as is" without warranties of any kind. To the maximum extent permitted by law, QPrive is not liable for indirect, incidental, or consequential damages, or for lost sales, profits, or data arising from use of the app, including failed or delayed billing cycles.</p>
+
+        <h2>9. Termination</h2>
+        <p>You may terminate at any time by uninstalling the app. We may suspend or terminate access for violations of these Terms. When an app is removed, Shopify cancels its active subscription charges, and QPrive deletes your store's data as described in the Privacy Policy.</p>
+
+        <h2>10. Contact</h2>
+        <p>Questions about these Terms? Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

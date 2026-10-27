@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { FAQ_CATEGORIES, FAQS } from '../faqs';
+
+const title = 'FAQs — QPrive for Shopify';
+const description =
+  'Answers about QPrive: setup, membership plans and perks, recurring billing and failed payments, member self-service, pricing and data.';
+---
+<Base title={title} description={description} faq={FAQS}>
+  <section class="phero phero-mint">
+    <div class="wrap">
+      <div class="crumb"><a href="/">~</a> / faqs</div>
+      <h1>Frequently asked questions</h1>
+      <p>Everything merchants ask before and after they install. Can’t find yours? <a href="/support" style="text-decoration:underline">Ask us</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:2rem">
+    <div class="wrap">
+      {FAQ_CATEGORIES.map((cat, i) => (
+        <div class="faq-cat rv">
+          <div class="faq-cat-h">
+            <span class="faq-cat-n">{String(i + 1).padStart(2, '0')}</span>
+            <h2>{cat.title}</h2>
+          </div>
+          <div class="faq">
+          {cat.items.map((f) => (
+            <details>
+              <summary>{f.q}<span class="pm"></span></summary>
+              <div class="ans" set:html={f.a}></div>
+            </details>
+          ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { APP_STORE_URL } from '../consts';
+import { PLANS, MATRIX } from '../plans';
+
+const title = 'Pricing — QPrive for Shopify';
+const description =
+  'QPrive is free while we launch on the Shopify App Store — every feature, no card, no trial clock. Your members pay you through Shopify checkout.';
+
+const check = '<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>';
+const cellClass = (v: string) => (v === '✓' ? 'yes' : v === '—' ? 'no' : '');
+---
+<Base title={title} description={description}>
+  <section class="phero phero-mint">
+    <div class="wrap">
+      <div class="crumb"><a href="/">~</a> / pricing</div>
+      <h1>Free. Every feature.</h1>
+      <p>
+        QPrive is <strong>free while we launch</strong> on the Shopify App Store — no card, no trial clock,
+        nothing held back. Run your whole membership program on it and decide later, with your own numbers.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:2rem">
+    <div class="wrap">
+      <div class={PLANS.length === 1 ? 'plans one' : 'plans'}>
+        {PLANS.map((p) => (
+          <div class={p.feat ? 'plan feat rv' : 'plan rv'}>
+            {p.badge && <span class="badge">{p.badge}</span>}
+            <span class="ptag">{p.name}</span>
+            <div class="price"><b>{p.price}</b><span>/ month</span></div>
+            <p class="pdesc">{p.desc}</p>
+            <ul>
+              {p.features.map((f) => <li><span set:html={check} /> {f}</li>)}
+            </ul>
+            <a href={APP_STORE_URL} class={p.feat ? 'btn btn-accent w-full' : 'btn btn-line w-full'}>Install free</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- what's included -->
+  <section class="sec" style="padding-top:0">
+    <div class="narrow">
+      <div class="shead ctr rv" style="margin-bottom:2rem">
+        <h2>What's included</h2>
+      </div>
+      <div class="rv" style="overflow-x:auto">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              {PLANS.map((p) => <th class={p.feat ? 'colhi' : ''}>{p.name}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {MATRIX.map((row) => (
+              <tr>
+                <th>{row.label}</th>
+                {row.cells.map((c, i) => (
+                  <td class={`${cellClass(c)}${PLANS[i]?.feat ? ' colhi' : ''}`}>{c}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="narrow">
+      <div class="shead ctr rv" style="margin-bottom:2.5rem">
+        <h2>How billing works</h2>
+      </div>
+      <div class="faq rv">
+        <details><summary>Is there a catch?<span class="pm"></span></summary><div class="ans">No. While QPrive is in its launch period on the App Store, every feature is on for every store at $0. There is no card to add and nothing that switches off after a few days.</div></details>
+        <details><summary>Will I be charged later?<span class="pm"></span></summary><div class="ans">Not without your say-so. If paid plans arrive, they’ll be announced here and on the App Store listing first, billed through Shopify’s Billing API, and you’d approve any charge in Shopify before it starts.</div></details>
+        <details><summary>How do my members pay?<span class="pm"></span></summary><div class="ans">Through your own Shopify checkout, like any other order. Each cycle QPrive charges the payment method the member saved with Shopify, and the payment lands in your store as a regular Shopify order.</div></details>
+        <details><summary>What if I uninstall?<span class="pm"></span></summary><div class="ans">Shopify cancels active subscription charges automatically when an app is removed, and QPrive deletes your store’s data. Re-installing restores access to the dashboard.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lead="Install free. Decide with" em="your own numbers." text="Every feature, no card to start." />
+</Base>

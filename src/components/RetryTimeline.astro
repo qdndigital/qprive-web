@@ -1,0 +1,23 @@
+---
+// A failed payment going through the retry schedule set under
+// Settings → Billing attempts. Example values (3 retries, 3 days apart).
+---
+<div class="dn" aria-label="Failed-payment retry schedule (example)">
+  <div class="dn-h">
+    <span>Payment method failure</span>
+    <span class="dn-set">3 retries · every 3 days</span>
+  </div>
+  <ol class="dn-steps">
+    <li class="dn-s fail"><span class="dn-dot"></span><span class="dn-d">Day 0</span><span class="dn-t">Charge declined</span><span class="dn-tag bad">Failed</span></li>
+    <li class="dn-s s1"><span class="dn-dot"></span><span class="dn-d">Day 3</span><span class="dn-t">Retry 1 of 3</span><span class="dn-tag bad">Failed</span></li>
+    <li class="dn-s s2"><span class="dn-dot"></span><span class="dn-d">Day 6</span><span class="dn-t">Retry 2 of 3</span><span class="dn-tag ok">Paid · order created</span></li>
+  </ol>
+  <div class="dn-final">
+    <span class="dn-k">If every retry fails</span>
+    <div class="dn-acts"><span class="on">Skip + notify</span><span>Pause + notify</span><span>Cancel + notify</span></div>
+  </div>
+  <div class="dn-oos">
+    <span class="dn-k">Not enough inventory</span>
+    <span>Its own retries and final action — and an email to you to restock.</span>
+  </div>
+</div>

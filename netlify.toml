@@ -16,3 +16,10 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+
+[[redirects]]
+  from = "https://qprive.netlify.app/*"
+  to   = "https://qprive.com/:splat"
+  status = 301
+  force = true
